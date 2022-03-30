@@ -39,9 +39,12 @@ const p2 = [
     [33.401762, 44.345695],
 ]
 
+let p3 = [
+    [33.401762, 44.345695], 
+    [33.406064, 44.358729]
+]
 
-
-let paths = [p1, p2]
+let paths = [p1, p2, p3]
 
 paths.forEach(e=>{
     L.polygon(e, {
