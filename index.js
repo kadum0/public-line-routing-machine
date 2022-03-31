@@ -39,7 +39,7 @@ const p2 = [
     [33.401762, 44.345695],
 ]
 
-let p3 = [
+const p3 = [
     [33.401762, 44.345695], 
     [33.406064, 44.358729]
 ]
@@ -57,6 +57,35 @@ paths.forEach(e=>{
 
 
 let btn = document.querySelector("btn")
+
+let list = []
+
+mymap.on('click', function(e) {
+    console.log(e.latlng.lat,e.latlng.lng);
+console.log([...list])
+
+
+let i = [e.latlng.lat, e.latlng.lng]
+
+list.push(i)
+if(list.length>1){
+    // list.forEach((ii, ind)=>{
+    // L.polygon(list[ind], )
+    // })
+// L.polygon([list[0], list[1], list[2]], {
+//     color: "red"
+// }).addTo(mymap)
+
+
+L.polyline([...list], {
+    color: "red"
+}).addTo(mymap)
+
+
+}
+
+
+});
 
 
 

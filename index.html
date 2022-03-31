@@ -11,7 +11,7 @@
         body {
             margin: 0%;
             height: 100vh;
-            overflow: hidden;
+            /* overflow: hidden; */
         }
 
         * {
@@ -44,9 +44,19 @@
             position: absolute;
             top: 10vh;
             right: 10vw;
+        }
 
+
+        #muap {
+            /* position: absolute;
+            top: 0; */
+            bottom: 0;
+            width: 80%;
+            height: 80%;
         }
     </style>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
 
 </head>
 
@@ -57,11 +67,42 @@
     <div id="map"></div>
     <div class="click"></div>
     <button>submit</button>
-    <pre id="info"></pre>
+
+
+    <!-- muap -->
+
+    <!-- <div id="muap"></div>
+    <pre id="info"></pre> -->
 
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="index.js"></script>
+
+
+    <script>
+
+
+    </script>
+
+    <script>
+        // mapboxgl.accessToken = 'pk.eyJ1IjoibnVhbSIsImEiOiJjbDE2bXN1NXEwdmU0M2JzZ3hyeG51emVoIn0.h0mj6xpoN2vu-bOonKwYOw';
+        // const map = new mapboxgl.Map({
+        //     container: 'muap', // container id
+        //     style: 'mapbox://styles/mapbox/streets-v11',
+        //     center: [-74.5, 40], // starting position
+        //     zoom: 9 // starting zoom
+        // });
+
+        // map.on('mousemove', (e) => {
+        //     document.getElementById('info').innerHTML =
+        //         // `e.point` is the x, y coordinates of the `mousemove` event
+        //         // relative to the top-left corner of the map.
+        //         JSON.stringify(e.point) +
+        //         '<br />' +
+        //         // `e.lngLat` is the longitude, latitude geographical position of the event.
+        //         JSON.stringify(e.lngLat.wrap());
+        // });
+    </script>
 </body>
 
 </html>
