@@ -39,10 +39,10 @@
         }
 
 
-        /* trying to hide the Hide itinerary instructions */
-        /* .leaflet-control-container .leaflet-routing-container-hide {
+        /* should be used with the hide() to hide the Hide itinerary instructions minimized */
+        .leaflet-control-container .leaflet-routing-container-hide {
             display: none;
-        } */
+        }
     </style>
 
 
@@ -103,15 +103,29 @@
         //     ]
         // }).addTo(map);
 
-        const ctrl = L.Routing.control({
+        const p1 = L.Routing.control({
             waypoints: [
                 L.latLng(33.408102, 44.355920),
                 L.latLng(33.396600, 44.356579)
             ],
+            fitSelectedRoutes: false
         }).addTo(map);
 
-        ctrl.hide()
+        p1.hide()
 
+        const p2 = L.Routing.control({
+            waypoints: [
+                L.latLng(33.368550, 44.371130),
+                L.latLng(33.378108, 44.401303)
+            ],
+            fitSelectedRoutes: false
+
+        }).addTo(map);
+
+        p2.hide()
+
+
+        //33.367895, 44.370159
 
         //trying L.routing.line; 
         // L.Routing.line([L.latLng(33.408102, 44.355920),L.latLng(33.396600, 44.356579)])
