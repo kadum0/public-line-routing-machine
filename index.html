@@ -87,7 +87,7 @@
 
 
 
-        ////          leaflet Routing machine api; plugin; 
+        ////  leaflet Routing machine api; plugin; 
 
         // trying L.routing.control 
         // var map = L.map('map');
@@ -112,22 +112,42 @@
 
         let p = []
 
+        let mlist = []
+
         //try 2; 
         map.on('click', function (ev) {
             var latlng = map.mouseEventToLatLng(ev.originalEvent);
             console.log(latlng.lat + ', ' + latlng.lng);
 
 
+
             let i = [latlng.lat, latlng.lng]
+
+            //marker group 
+            // let mgroup = L.layerGroup().addTo(map);
+            // L.marker(i).addTo(mgroup)
+            // console.log(mgroup.id)
+
+            let m = L.marker(i).addTo(map);
+            console.log(m)
+            mlist.push(m)
+            console.log(mlist)
+
             p.push(i)
+
             if (p.length >= 2) {
+
+
                 paths.push(p)
 
 
                 // clalPath()
                 let ii = L.Routing.control({
                     waypoints: paths[paths.length - 1],
-                    fitSelectedRoutes: false
+                    fitSelectedRoutes: false,
+                    createMarker: function () {
+                        return null;
+                    },
                 }).addTo(map)
                 ii.hide()
 
@@ -135,11 +155,38 @@
 
                 p = []
                 console.log("should enable ")
+
+                // let ma = L.markerClusterGroup()
+                // ma.clearLayers();
+                // map.marker.remove();
+                // $(".leaflet-marker-icon").remove();
+                // $(".leaflet-popup").remove();
+
+                // L.map.eachLayer(lay => L.map.removeLayer(lay))
+                // mgroup.removeLayer()
+
+                // map.removeLayer(m)
+
+                // mlist.forEach(mk => map.removeLayer(mk))
+
+            }
+
+            if (mlist.length > 2) {
+                mlist.forEach((mk, index) => {
+                    map.removeLayer(mk);
+                    // if (index == 2) {
+                    //     L.marker(mk).addTo(map)
+                    // }
+                })
+                let m = L.marker(i).addTo(map)
+                mlist = [m]
             }
 
         });
 
-
+        // if (mlist.length >= 3) {
+        //     mlist.forEach(mk => map.removeLayer(mk))
+        // }
 
 
         // establishing paths; list and take routes from user
@@ -154,7 +201,10 @@
             paths.forEach(e => {
                 let i = L.Routing.control({
                     waypoints: e,
-                    fitSelectedRoutes: false
+                    fitSelectedRoutes: false,
+                    createMarker: function () {
+                        return null;
+                    },
                 }).addTo(map)
                 i.hide()
             })
