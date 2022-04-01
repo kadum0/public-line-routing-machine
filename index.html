@@ -103,26 +103,40 @@
         //     ]
         // }).addTo(map);
 
-        const p1 = L.Routing.control({
-            waypoints: [
-                L.latLng(33.408102, 44.355920),
-                L.latLng(33.396600, 44.356579)
-            ],
-            fitSelectedRoutes: false
-        }).addTo(map);
 
-        p1.hide()
 
-        const p2 = L.Routing.control({
-            waypoints: [
-                L.latLng(33.368550, 44.371130),
-                L.latLng(33.378108, 44.401303)
-            ],
-            fitSelectedRoutes: false
+        // establishing paths; list and take routes from user
 
-        }).addTo(map);
+        p1 = [L.latLng(33.408102, 44.355920), L.latLng(33.396600, 44.356579)]
+        p2 = [L.latLng(33.368550, 44.371130), L.latLng(33.378108, 44.401303)]
 
-        p2.hide()
+        const paths = [p1, p2]
+
+        paths.forEach(e => {
+            let i = L.Routing.control({
+                waypoints: e,
+                fitSelectedRoutes: false
+            }).addTo(map)
+            i.hide()
+        })
+
+        // const p1 = L.Routing.control({
+        //     waypoints: [
+        //         L.latLng(33.408102, 44.355920),
+        //         L.latLng(33.396600, 44.356579)
+        //     ],
+        //     fitSelectedRoutes: false
+        // }).addTo(map);
+        // p1.hide()
+
+        // const p2 = L.Routing.control({
+        //     waypoints: [
+        //         L.latLng(33.368550, 44.371130),
+        //         L.latLng(33.378108, 44.401303)
+        //     ],
+        //     fitSelectedRoutes: false
+        // }).addTo(map);
+        // p2.hide()
 
 
         //33.367895, 44.370159
