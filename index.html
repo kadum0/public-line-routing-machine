@@ -37,6 +37,12 @@
             height: 80vh;
             width: 80vw;
         }
+
+
+        /* trying to hide the Hide itinerary instructions */
+        /* .leaflet-control-container .leaflet-routing-container-hide {
+            display: none;
+        } */
     </style>
 
 
@@ -56,6 +62,7 @@
         // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         // }).addTo(map);
+
 
 
         //new tilelayer; mapbox
@@ -96,36 +103,18 @@
         //     ]
         // }).addTo(map);
 
-        L.Routing.control({
+        const ctrl = L.Routing.control({
             waypoints: [
                 L.latLng(33.408102, 44.355920),
                 L.latLng(33.396600, 44.356579)
             ],
-            // autoRoute: false
-            // plan: null,
-            // router: null,
-            // router: L.Routing.mapbox('access-token'),
-            // fitSelectedRoutes: false,
-
-
-            // createMarker: function () {
-            //     return null;
-            // },
-
-            // lineOptions: {
-            //     addWaypoints: false
-            // }
-
-
-            // addwaypoints: false,
-            // draggableWaypoints: false
         }).addTo(map);
 
+        ctrl.hide()
 
 
         //trying L.routing.line; 
         // L.Routing.line([L.latLng(33.408102, 44.355920),L.latLng(33.396600, 44.356579)])
-
 
         // L.waypoints[
         //     L.latLng(33.408102, 44.355920),
