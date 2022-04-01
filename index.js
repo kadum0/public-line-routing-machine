@@ -11,7 +11,17 @@ const apiKey = 'pk.eyJ1IjoiYWxmcmVkMjAxNiIsImEiOiJja2RoMHkyd2wwdnZjMnJ0MTJwbnVme
 
 // const mymap = L.map('map').setView([40.770116, -73.967909], 13);
 //33.401968, 44.355534
+
 const mymap = L.map('map').setView([33.401968, 44.355534], 13);
+
+
+// const mymap = L.map('map', {
+//     layer: MQ.maplayer(), 
+//     center:[33.401968, 44.355534],
+//     zoom: 13
+// })
+
+
 
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -46,14 +56,24 @@ const p3 = [
 
 let paths = [p1, p2, p3]
 
-paths.forEach(e=>{
-    L.polygon(e, {
-        color:'red',
-        fillColor:'blue',
-        fillOpacity:0.2
-    }).addTo(mymap)
+// paths.forEach(e=>{
+//     L.polygon(e, {
+//         color:'red',
+//         fillColor:'blue',
+//         fillOpacity:0.2
+//     }).addTo(mymap)
     
-})
+// })
+
+var dir = MQ.routing.directions();
+
+        dir.route({
+            locations: [
+                p1,
+                p2
+            ]
+        });
+
 
 
 let btn = document.querySelector("btn")
@@ -76,11 +96,9 @@ if(list.length>1){
 //     color: "red"
 // }).addTo(mymap)
 
-
 L.polyline([...list], {
     color: "red"
 }).addTo(mymap)
-
 
 }
 
