@@ -105,20 +105,65 @@
 
 
 
+        let paths = []
+
+        //try 1; cant read lng
+        // map.on("click", e => console.log(e.latLng.lat, e.latLng.lng))
+
+        let p = []
+
+        //try 2; 
+        map.on('click', function (ev) {
+            var latlng = map.mouseEventToLatLng(ev.originalEvent);
+            console.log(latlng.lat + ', ' + latlng.lng);
+
+
+            let i = [latlng.lat, latlng.lng]
+            p.push(i)
+            if (p.length >= 2) {
+                paths.push(p)
+
+
+                // clalPath()
+                let ii = L.Routing.control({
+                    waypoints: paths[paths.length - 1],
+                    fitSelectedRoutes: false
+                }).addTo(map)
+                ii.hide()
+
+
+
+                p = []
+                console.log("should enable ")
+            }
+
+        });
+
+
+
+
         // establishing paths; list and take routes from user
 
         p1 = [L.latLng(33.408102, 44.355920), L.latLng(33.396600, 44.356579)]
         p2 = [L.latLng(33.368550, 44.371130), L.latLng(33.378108, 44.401303)]
 
-        const paths = [p1, p2]
+        paths.push(p1, p2)
+        // paths.push(p2)
 
-        paths.forEach(e => {
-            let i = L.Routing.control({
-                waypoints: e,
-                fitSelectedRoutes: false
-            }).addTo(map)
-            i.hide()
-        })
+        function clalPath() {
+            paths.forEach(e => {
+                let i = L.Routing.control({
+                    waypoints: e,
+                    fitSelectedRoutes: false
+                }).addTo(map)
+                i.hide()
+            })
+        }
+
+        clalPath()
+
+
+
 
         // const p1 = L.Routing.control({
         //     waypoints: [

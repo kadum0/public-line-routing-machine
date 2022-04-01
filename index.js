@@ -65,14 +65,14 @@ let paths = [p1, p2, p3]
     
 // })
 
-var dir = MQ.routing.directions();
+// var dir = MQ.routing.directions();
 
-        dir.route({
-            locations: [
-                p1,
-                p2
-            ]
-        });
+        // dir.route({
+        //     locations: [
+        //         p1,
+        //         p2
+        //     ]
+        // });
 
 
 
