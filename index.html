@@ -54,21 +54,19 @@
 
 
     <script>
+        //initializing map, tile layer; 
+
         const map = L.map('map').setView([33.396600, 44.356579], 13);
 
 
-        // old tilelayer; openstreetmap
-
+        // default tilelayer; openstreetmap
         // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         // }).addTo(map);
 
 
-
         //new tilelayer; mapbox
-
         const apiKey = 'pk.eyJ1IjoiYWxmcmVkMjAxNiIsImEiOiJja2RoMHkyd2wwdnZjMnJ0MTJwbnVmeng5In0.E4QbAFjiWLY8k3AFhDtErA';
-
 
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
             maxZoom: 18,
@@ -77,14 +75,6 @@
             zoomOffset: -1,
             accessToken: apiKey
         }).addTo(map);
-
-
-
-        // L.marker([51.5, -0.09]).addTo(map)
-        //     .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-        //     .openPopup();
-
-
 
 
         ////  leaflet Routing machine api; plugin; 
@@ -103,24 +93,23 @@
         //     ]
         // }).addTo(map);
 
-
-
         let paths = []
+        let p = []
+        let mlist = []
+
 
         //try 1; cant read lng
         // map.on("click", e => console.log(e.latLng.lat, e.latLng.lng))
 
-        let p = []
+        // map.on("click", (ev)=>{
+        //     var latlng = map.mouseEventToLatLng(ev.originalEvent);
+        //     console.log(latlng.lat + ', ' + latlng.lng);
+        // })
 
-        let mlist = []
 
         //try 2; 
         map.on('click', function (ev) {
             var latlng = map.mouseEventToLatLng(ev.originalEvent);
-            console.log(latlng.lat + ', ' + latlng.lng);
-
-
-
             let i = [latlng.lat, latlng.lng]
 
             //marker group 
@@ -137,9 +126,7 @@
 
             if (p.length >= 2) {
 
-
                 paths.push(p)
-
 
                 // clalPath()
                 let ii = L.Routing.control({
@@ -151,10 +138,8 @@
                 }).addTo(map)
                 ii.hide()
 
-
-
                 p = []
-                console.log("should enable ")
+                // console.log("should enable ")
 
                 // let ma = L.markerClusterGroup()
                 // ma.clearLayers();
@@ -170,18 +155,11 @@
                 // mlist.forEach(mk => map.removeLayer(mk))
 
             }
-
             if (mlist.length > 2) {
-                mlist.forEach((mk, index) => {
-                    map.removeLayer(mk);
-                    // if (index == 2) {
-                    //     L.marker(mk).addTo(map)
-                    // }
-                })
+                mlist.forEach(mk => map.removeLayer(mk))
                 let m = L.marker(i).addTo(map)
                 mlist = [m]
             }
-
         });
 
         // if (mlist.length >= 3) {
@@ -211,78 +189,6 @@
         }
 
         clalPath()
-
-
-
-
-        // const p1 = L.Routing.control({
-        //     waypoints: [
-        //         L.latLng(33.408102, 44.355920),
-        //         L.latLng(33.396600, 44.356579)
-        //     ],
-        //     fitSelectedRoutes: false
-        // }).addTo(map);
-        // p1.hide()
-
-        // const p2 = L.Routing.control({
-        //     waypoints: [
-        //         L.latLng(33.368550, 44.371130),
-        //         L.latLng(33.378108, 44.401303)
-        //     ],
-        //     fitSelectedRoutes: false
-        // }).addTo(map);
-        // p2.hide()
-
-
-        //33.367895, 44.370159
-
-        //trying L.routing.line; 
-        // L.Routing.line([L.latLng(33.408102, 44.355920),L.latLng(33.396600, 44.356579)])
-
-        // L.waypoints[
-        //     L.latLng(33.408102, 44.355920),
-        //     L.latLng(33.396600, 44.356579)
-        // ].addTo(map)
-
-        //routing ???
-
-        /* Start routing control  */
-        // function begin_routing() {
-        //     L.Routing.control({
-        //         waypoints: [
-        //             orig_loc,
-        //             dest_loc
-        //             //L.latLng(14.1688, 100.2918),
-        //             //L.latLng(13.7042, 100.6032)
-        //         ],
-        //         routeWhileDragging: true,
-        //         routeDragInterval: 500,
-        //         collapsible: true, // hide/show panel routing
-        //         reverseWaypoints: false,
-        //         showAlternatives: false,
-        //         createMarker: function (i, wp, nWps) {
-        //             switch (i) {
-        //                 case 0:
-        //                     return L.marker(wp.latLng, {
-        //                         icon: svgpin_Icon,
-        //                         draggable: true
-        //                     }).bindPopup("<b>" + "Origin" + "</b>");
-        //                 case nWps - 1:
-        //                     return L.marker(wp.latLng, {
-        //                         icon: svgpin_Icon2,
-        //                         draggable: true
-        //                     }).bindPopup("<b>" + "Destination" + "</b>");
-        //                 default:
-        //                     return L.marker(wp.latLng, {
-        //                         icon: svgpin_Icon3,
-        //                         draggable: true
-        //                     }).bindPopup("<b>" + "Waypoint" + "</b>");
-        //             }
-        //         }
-        //     }).addTo(map);
-        // }
-
-        // begin_routing();
     </script>
 
 </body>
